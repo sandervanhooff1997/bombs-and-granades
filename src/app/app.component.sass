@@ -1,0 +1,93 @@
+$primary-color: #3498db
+$success-color: #7bee7b
+$danger-color: #eb3d11
+$border-radius: 12px
+
+p
+  font-weight: bold
+  font-size: 18px
+
+.text-success
+  color: $success-color
+
+.text-danger
+  color: $danger-color
+
+.player
+  background: #dcdcdc
+  margin: 0 5px
+  padding: 5px 30px
+  display: inline-block
+  border-radius: 0 0 $border-radius $border-radius
+  line-height: 5px
+
+  &.player-playing
+    background: $success-color
+
+  &.player-death
+    background: $danger-color
+    color: white
+
+.dice-container
+  padding: 100px 0
+
+.dice
+  width: 120px
+  display: inline-block
+  margin: 5px
+
+  &.dice-picked
+    background: hsl(213.2deg 100% 63.83%)
+
+    > span
+      background: hsl(191.04deg 100% 63.83%)
+
+
+  > span
+    padding: 12px
+    font-size: 1.1rem
+
+button
+  background: hsl(111deg 46.75% 45.82%)
+  border-radius: $border-radius
+  border: none
+  padding: 0
+  cursor: pointer
+  outline-offset: 4px
+
+  &:disabled
+    background: hsl(0deg 0% 61.57%)
+    cursor: default
+    > span
+      background: hsl(0deg 0% 84.25%)
+
+  &:not(:disabled):active > span
+    transform: translateY(-2px)
+
+
+  > span
+    display: block
+    padding: 12px 26px
+    border-radius: $border-radius
+    font-size: 1.25rem
+    background: hsl(345deg 100% 47%)
+    background-color: $success-color
+    color: white
+    transform: translateY(-6px)
+
+.action-buttons button
+  margin: 15px 15px
+
+.container
+  display: grid
+  grid-template-columns: 49% 49%
+  gap: 5px
+  text-align: center
+  padding-bottom: 50px
+
+  .right-column
+    gap: 5px
+
+    .grid-3
+      display: grid
+      grid-template-columns: repeat(3, 1fr)

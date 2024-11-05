@@ -1,0 +1,41 @@
+<div class="dice-container">
+  <ng-container *ngFor="let d of game.dices; let i = index">
+    <ng-container *ngIf="d.visible">
+      <button
+        *ngIf="
+          !d.picked &&
+          d.optionable &&
+          d.side != diceSideSkull &&
+          !game.invertedSkulls
+        "
+        [disabled]="game.currentPlayerDeath"
+        (click)="pickDice(d)"
+        class="dice spawn-bounce-animate"
+      >
+        <span>Pick<br />{{ d.side }}</span>
+      </button>
+      <button
+        *ngIf="d.side == diceSideSkull && !d.optionable"
+        [disabled]="true"
+        class="dice spawn-bounce-animate"
+      >
+        <span>{{ d.side }}<br />&nbsp;</span>
+      </button>
+      <button
+        [disabled]="true"
+        class="dice spawn-bounce-animate"
+        *ngIf="d.side == diceSideSkull && d.optionable"
+      >
+        <span>Deducted<br />{{ d.side }}</span>
+      </button>
+      <button
+        class="dice dice-picked spawn-bounce-animate"
+        [disabled]="game.currentPlayerDeath && !game.invertedSkulls"
+        *ngIf="d.picked && d.optionable"
+        (click)="releaseDice(d)"
+      >
+        <span>Release<br />{{ d.side }}</span>
+      </button>
+    </ng-container>
+  </ng-container>
+</div>

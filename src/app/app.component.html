@@ -1,0 +1,33 @@
+<ng-container *ngIf="!game">
+  <app-start-form (onGameStart)="startGame($event)"></app-start-form>
+</ng-container>
+
+<ng-container *ngIf="game">
+  <app-confirm-alert
+    *ngIf="game.finished"
+    [message]="'Player ' + game.currentPlayerIndex + 1 + ' wins!'"
+    (confirm)="reset()"
+  ></app-confirm-alert>
+  <div *ngIf="game && game.scoreBoard">
+    <div class="container">
+      <div class="left-column">
+        <app-players [game]="game"></app-players>
+      </div>
+
+      <div class="right-column">
+        <app-score-board [game]="game"></app-score-board>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="left-column">
+        <app-action-buttons [game]="game"></app-action-buttons>
+        <app-dices [game]="game"></app-dices>
+      </div>
+
+      <div class="right-column">
+        <app-cards class="grid-3" [game]="game"></app-cards>
+      </div>
+    </div>
+  </div>
+</ng-container>

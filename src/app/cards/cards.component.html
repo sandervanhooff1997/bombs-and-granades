@@ -1,0 +1,52 @@
+<div class="inner-column">
+  <h3 class="spawn-bounce-animate">Available</h3>
+  <ng-container
+    *ngFor="let card of game.cardDeck.cardsAvailable; let i = index"
+  >
+    <button
+      (click)="pickCurrentCard()"
+      [disabled]="game.cardDeck.currentCard"
+      [ngStyle]="{
+        'z-index': i + 1,
+        top: 50 + (game.cardDeck.cardsAvailable.length - i) * 7 + 'px'
+      }"
+      [ngClass]="{
+        clickable:
+          !game.cardDeck.currentCard &&
+          i == game.cardDeck.cardsAvailable.length - 1,
+        'current-card-active':
+          !game.cardDeck.currentCard &&
+          i == game.cardDeck.cardsAvailable.length - 1
+      }"
+      class="card card-closed spawn-bounce-animate-card"
+    >
+      <span
+        *ngIf="
+          !game.cardDeck.currentCard &&
+          i === game.cardDeck.cardsAvailable.length - 1
+        "
+        >Pick me</span
+      >
+    </button>
+  </ng-container>
+</div>
+<div class="inner-column">
+  <h3 class="spawn-bounce-animate">Current</h3>
+  <button
+    *ngIf="game.cardDeck.currentCard"
+    class="card card-current spawn-bounce-animate-card"
+  >
+    <span>{{ game.cardDeck.currentCard.type }}</span>
+  </button>
+</div>
+<div class="inner-column">
+  <h3 class="spawn-bounce-animate">Played</h3>
+  <ng-container *ngFor="let card of game.cardDeck.cardsPlayed; let i = index">
+    <button
+      (click)="pickCurrentCard()"
+      [disabled]="true"
+      [ngStyle]="{ 'z-index': i + 1, top: 50 + i * 7 + 'px' }"
+      class="card card-closed spawn-bounce-animate-card"
+    ></button>
+  </ng-container>
+</div>

@@ -1,0 +1,16 @@
+@import '../_variables'
+
+.player
+  background: $color-light-gray
+  margin: 0 5px
+  padding: 5px 30px
+  display: inline-block
+  border-radius: 0 0 $border-radius $border-radius
+  line-height: 5px
+
+  &.player-playing
+    background: $success-color
+
+  &.player-death
+    background: $danger-color
+    color: white

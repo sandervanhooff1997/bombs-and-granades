@@ -1,0 +1,33 @@
+
+@import '../_variables'
+
+.inner-column
+      position: relative
+
+.card
+  width: 150px
+  height: 200px
+  display: grid
+  place-items: center
+  background-color: hsl(111, 46.75%, 45.82%)
+  border: 2px solid rgba(255,255,255,0.2)
+  position: absolute
+  left: 50%
+  transform: translateX(-50%)
+
+  > span
+    width: 150px
+    height: 200px
+    padding: 0
+    display: flex
+    align-items: center
+    justify-content: center
+
+.card-closed, .card-current
+  cursor: not-allowed
+
+.current-card-active
+  background: $success-color
+
+  &.clickable
+    cursor: pointer

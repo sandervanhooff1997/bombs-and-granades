@@ -1,0 +1,64 @@
+<div class="game-title">
+  {{ gameTitle }}
+</div>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label [for]="numPlayersInput"
+    >Enter a number of players<br />(between {{ minPlayers }} and
+    {{ maxPlayers }})</label
+  >
+  <input
+    [id]="numPlayersInput"
+    type="number"
+    placeholder="Number of players"
+    [formControlName]="numPlayersInput"
+  />
+
+  <div
+    *ngIf="
+      myForm.get(numPlayersInput)?.invalid &&
+      myForm.get(numPlayersInput)?.touched
+    "
+  >
+    <div *ngIf="myForm.get(numPlayersInput)?.errors?.required">
+      This field is required.
+    </div>
+    <div *ngIf="myForm.get(numPlayersInput)?.errors?.min">
+      The number must be greater than {{ minPlayers }}.
+    </div>
+    <div *ngIf="myForm.get(numPlayersInput)?.errors?.max">
+      The number must be less than {{ maxPlayers }}.
+    </div>
+  </div>
+
+  <label [for]="maxScoreInput"
+    >Enter a max score<br />(between {{ minScore }} and {{ maxScore }})</label
+  >
+  <input
+    [id]="maxScoreInput"
+    type="number"
+    placeholder="Max Score"
+    step="1000"
+    [formControlName]="maxScoreInput"
+  />
+
+  <div
+    *ngIf="
+      myForm.get(maxScoreInput)?.invalid && myForm.get(maxScoreInput)?.touched
+    "
+  >
+    <div *ngIf="myForm.get(maxScoreInput)?.errors?.required">
+      This field is required.
+    </div>
+    <div *ngIf="myForm.get(maxScoreInput)?.errors?.min">
+      The number must be greater than {{ minScore }}.
+    </div>
+    <div *ngIf="myForm.get(maxScoreInput)?.errors?.max">
+      The number must be less than {{ maxScore }}.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="myForm.invalid" (click)="onSubmit()">
+    <span>Start Game</span>
+  </button>
+</form>

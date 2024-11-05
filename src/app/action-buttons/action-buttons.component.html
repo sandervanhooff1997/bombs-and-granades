@@ -1,0 +1,22 @@
+<div class="action-buttons" *ngIf="game.cardDeck.currentCard">
+  <button
+    [disabled]="
+      !game.diceRollable ||
+      !game.cardDeck.currentCard ||
+      game.currentPlayerDeath
+    "
+    (click)="rollDice()"
+  >
+    <span>Roll dices</span>
+  </button>
+  <button
+    [disabled]="!game.scoreAddable"
+    *ngIf="!game.currentPlayerDeath"
+    (click)="addScore()"
+  >
+    <span>Add score</span>
+  </button>
+  <button *ngIf="game.currentPlayerDeath" (click)="continueOnDeath()">
+    <span>Next player</span>
+  </button>
+</div>

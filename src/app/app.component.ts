@@ -9,6 +9,7 @@ import { Game, IGame } from './model/game';
 import { PlayersComponent } from './players/players.component';
 import { ScoreBoardComponent } from './score-board/score-board.component';
 import { StartFormComponent } from './start-form/start-form.component';
+import { CurrentGameStatsComponent } from './current-game-stats/current-game-stats.component';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ import { StartFormComponent } from './start-form/start-form.component';
     CardsComponent,
     StartFormComponent,
     ConfirmAlertComponent,
+    CurrentGameStatsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
@@ -39,7 +41,7 @@ export class AppComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
+    console.log(changes);
   }
 
   startGame(data: { numPlayers: number; maxScore: number }) {

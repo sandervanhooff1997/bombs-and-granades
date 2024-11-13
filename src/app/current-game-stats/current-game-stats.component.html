@@ -1,0 +1,14 @@
+<div class="current-game-stats spawn-bounce-animate" [ngClass]="{
+  'game-playing': !game.finished,
+  'game-finished': game.finished
+}">
+  <p>Max score: {{game.scoreBoard!.maxScore}}</p>
+  <span><i class="fa-solid fa-info"></i>info</span>
+  <span><i (click)="requestRestart = true" class="fa-solid fa-rotate"></i>restart</span>
+  <span><i (click)="requestStop = true" class="fa-solid fa-stop"></i>stop</span>
+</div>
+
+<app-confirm-alert *ngIf="requestRestart" message="Restart Game?" [isAlert]="false"
+  (confirm)="onRestartGame($event)"></app-confirm-alert>
+<app-confirm-alert *ngIf="requestStop" message="Stop Game?" [isAlert]="false"
+  (confirm)="onStopGame($event)"></app-confirm-alert>

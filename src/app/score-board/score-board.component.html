@@ -1,76 +1,40 @@
 <div class="score-overview-container">
-  <h1
-    class="current-score spawn-bounce-animate"
-    *ngIf="game.cardDeck.currentCard"
-  >
+  <h1 class="current-score spawn-bounce-animate" *ngIf="game.cardDeck.currentCard">
     Current score: {{ game.scoreBoard!.currentScore.score }}
   </h1>
 </div>
 <div class="score-detail-container">
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="!!game.scoreBoard!.currentScore.coins"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="!!game.scoreBoard!.currentScore.coins">
     Coins: {{ game.scoreBoard!.currentScore.coins }}
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="!!game.scoreBoard!.currentScore.diamonds"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="!!game.scoreBoard!.currentScore.diamonds">
     Diamonds: {{ game.scoreBoard!.currentScore.diamonds }}
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="!!game.scoreBoard!.currentScore.groupBonus"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="!!game.scoreBoard!.currentScore.groupBonus">
     Group bonus: {{ game.scoreBoard!.currentScore.groupBonus }}
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="!!game.scoreBoard!.currentScore.extraCoin"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="!!game.scoreBoard!.currentScore.extraCoin">
     Extra Coin: {{ game.scoreBoard!.currentScore.extraCoin }}
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="!!game.scoreBoard!.currentScore.extraDiamond"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="!!game.scoreBoard!.currentScore.extraDiamond">
     Extra Diamond: {{ game.scoreBoard!.currentScore.extraDiamond }}
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="game.scoreBoard!.currentScore.factor !== 1"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="game.scoreBoard!.currentScore.factor !== 1">
     Score factor: {{ game.scoreBoard!.currentScore.factor }}
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="!!game.scoreBoard!.currentScore.minSwords"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="!!game.scoreBoard!.currentScore.minSwords">
     Swords: {{ game.scoreBoard!.currentScore.minSwords }}
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="!!game.scoreBoard!.currentScore.allDicesHaveValueBonus"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="!!game.scoreBoard!.currentScore.allDicesHaveValueBonus">
     Full House: {{ game.scoreBoard!.currentScore.allDicesHaveValueBonus }}
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="game.scoreBoard!.currentScore.preserveScoreOnDeath"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="game.scoreBoard!.currentScore.preserveScoreOnDeath">
     Treasure chest
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="game.scoreBoard!.currentScore.monkeysAreBirds"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="game.scoreBoard!.currentScore.monkeysAreBirds">
     Monkeys & Birds
   </p>
-  <p
-    class="score-detail spawn-bounce-animate"
-    *ngIf="!!game.scoreBoard!.currentScore.skulls"
-  >
+  <p class="score-detail spawn-bounce-animate" *ngIf="!!game.scoreBoard!.currentScore.skulls">
     Skulls: {{ game.scoreBoard!.currentScore.skulls }}
   </p>
 </div>

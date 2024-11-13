@@ -20,13 +20,13 @@
       myForm.get(numPlayersInput)?.touched
     "
   >
-    <div *ngIf="myForm.get(numPlayersInput)?.errors?.required">
+    <div *ngIf="myForm.get(numPlayersInput)?.errors?.['required']">
       This field is required.
     </div>
-    <div *ngIf="myForm.get(numPlayersInput)?.errors?.min">
+    <div *ngIf="myForm.get(numPlayersInput)?.errors?.['min']">
       The number must be greater than {{ minPlayers }}.
     </div>
-    <div *ngIf="myForm.get(numPlayersInput)?.errors?.max">
+    <div *ngIf="myForm.get(numPlayersInput)?.errors?.['max']">
       The number must be less than {{ maxPlayers }}.
     </div>
   </div>
@@ -47,13 +47,13 @@
       myForm.get(maxScoreInput)?.invalid && myForm.get(maxScoreInput)?.touched
     "
   >
-    <div *ngIf="myForm.get(maxScoreInput)?.errors?.required">
+    <div *ngIf="myForm.get(maxScoreInput)?.errors?.['required']">
       This field is required.
     </div>
-    <div *ngIf="myForm.get(maxScoreInput)?.errors?.min">
+    <div *ngIf="myForm.get(maxScoreInput)?.errors?.['min']">
       The number must be greater than {{ minScore }}.
     </div>
-    <div *ngIf="myForm.get(maxScoreInput)?.errors?.max">
+    <div *ngIf="myForm.get(maxScoreInput)?.errors?.['max']">
       The number must be less than {{ maxScore }}.
     </div>
   </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DiceSides, IDice } from '../model/dice';
 import { IGame } from '../model/game';
@@ -14,7 +14,7 @@ import { IGame } from '../model/game';
 export class DicesComponent {
   @Input() game!: IGame;
 
-  diceSideSkull = DiceSides.Skull;
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   pickDice(d: IDice) {
     this.game.pickDice(d);
@@ -22,5 +22,23 @@ export class DicesComponent {
 
   releaseDice(d: IDice) {
     this.game.releaseDice(d);
+  }
+
+  pickable(d: IDice): boolean {
+    return !d.picked &&
+    d.optionable &&
+    d.side !== DiceSides.Skull
+  }
+
+  regularSkull(d: IDice): boolean {
+    return d.side === DiceSides.Skull && !d.optionable;
+  }
+
+  deductedSkull(d: IDice): boolean {
+    return d.side === DiceSides.Skull && d.optionable
+  }
+
+  releaseable(d: IDice): boolean {
+    return d.picked && d.optionable;
   }
 }

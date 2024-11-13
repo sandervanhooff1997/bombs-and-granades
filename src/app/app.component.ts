@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
 import { CardsComponent } from './cards/cards.component';
@@ -27,15 +27,19 @@ import { StartFormComponent } from './start-form/start-form.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
 })
-export class AppComponent {
+export class AppComponent implements OnChanges {
   game: IGame | null = null;
   gameData = '';
 
   constructor() {
-    // this.startGame({
-    //   numPlayers: 3,
-    //   maxScore: 5000,
-    // });
+    this.startGame({
+      numPlayers: 3,
+      maxScore: 5000,
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
   }
 
   startGame(data: { numPlayers: number; maxScore: number }) {

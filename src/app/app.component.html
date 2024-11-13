@@ -3,11 +3,8 @@
 </ng-container>
 
 <ng-container *ngIf="game">
-  <app-confirm-alert
-    *ngIf="game.finished"
-    [message]="'Player ' + game.currentPlayerIndex + 1 + ' wins!'"
-    (confirm)="reset()"
-  ></app-confirm-alert>
+  <app-confirm-alert *ngIf="game.finished" [message]="'Player ' + game.currentPlayerIndex + 1 + ' wins!'"
+    (confirm)="reset()"></app-confirm-alert>
   <div *ngIf="game && game.scoreBoard">
     <div class="container">
       <div class="left-column">

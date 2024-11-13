@@ -1,41 +1,28 @@
 <div class="dice-container">
   <ng-container *ngFor="let d of game.dices; let i = index">
     <ng-container *ngIf="d.visible">
-      <button
-        *ngIf="
-          !d.picked &&
-          d.optionable &&
-          d.side != diceSideSkull &&
-          !game.invertedSkulls
-        "
-        [disabled]="game.currentPlayerDeath"
-        (click)="pickDice(d)"
-        class="dice spawn-bounce-animate"
-      >
+      <button *ngIf="
+          pickable(d)
+        " [disabled]="game.currentPlayerDeath" (click)="pickDice(d)" class="dice spawn-bounce-animate">
         <span>Pick<br />{{ d.side }}</span>
       </button>
-      <button
-        *ngIf="d.side == diceSideSkull && !d.optionable"
-        [disabled]="true"
-        class="dice spawn-bounce-animate"
-      >
+      <button *ngIf="regularSkull(d)" [disabled]="true" class="dice spawn-bounce-animate">
         <span>{{ d.side }}<br />&nbsp;</span>
       </button>
-      <button
-        [disabled]="true"
-        class="dice spawn-bounce-animate"
-        *ngIf="d.side == diceSideSkull && d.optionable"
-      >
+      <button [disabled]="true" class="dice spawn-bounce-animate" *ngIf="deductedSkull(d)">
         <span>Deducted<br />{{ d.side }}</span>
       </button>
-      <button
-        class="dice dice-picked spawn-bounce-animate"
-        [disabled]="game.currentPlayerDeath && !game.invertedSkulls"
-        *ngIf="d.picked && d.optionable"
-        (click)="releaseDice(d)"
-      >
+      <button class="dice dice-picked spawn-bounce-animate" [disabled]="game.currentPlayerDeath && !game.invertedSkulls"
+        *ngIf="releaseable(d)" (click)="releaseDice(d)">
         <span>Release<br />{{ d.side }}</span>
       </button>
+      <!-- <button *ngIf="d.visible" class="dice spawn-bounce-animate" [ngClass]="{'dice-picked': releaseable(d)}"
+      [disabled]="skull(d) || game.currentPlayerDeath || deducted(d) || game.invertedSkulls">
+      <span *ngIf="pickable(d)" (click)="pickDice(d)">Pick<br />{{ d.side }}</span>
+      <span *ngIf="releaseable(d)" (click)="releaseDice(d)">Release<br />{{ d.side }}</span>
+      <span *ngIf="skull(d)">{{ d.side }}<br />&nbsp;</span>
+      <span *ngIf="deducted(d)">Deducted<br />{{ d.side }}</span>
+    </button> -->
     </ng-container>
   </ng-container>
 </div>

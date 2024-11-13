@@ -45,7 +45,7 @@ export class Dice implements IDice {
     }
 
     this.visible = true;
-    this.side = forceType ? DiceSides.Coin : randomDiceSide();
+    this.side = forceType ? DiceSides.Skull : randomDiceSide();
     this.determineOptionable();
     this.determineCountableForBonus();
     this.determineScoreValue();

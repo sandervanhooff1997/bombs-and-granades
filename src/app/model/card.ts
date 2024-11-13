@@ -6,7 +6,7 @@ export enum CardType {
   GetFourSwords = 'Get four swords',
   Diamond = 'Diamond',
   Coin = 'Coin',
-  MonkeysAreBirds = 'Monkey are birds, birds are monkeys',
+  MonkeysAreBirds = 'Monkeys & Birds',
   DoubleThePoints = 'Double the points',
   OneSkullAdded = 'One skull added',
   TwoSkullsAdded = 'Two skulls added',

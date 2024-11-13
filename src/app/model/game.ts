@@ -163,7 +163,7 @@ export class Game implements IGame {
     const currentPlayer = this.players[this.currentPlayerIndex];
 
     if (countScore || this.scoreBoard!.currentScore.preserveScoreOnDeath) {
-      currentPlayer.score += this.scoreBoard!.currentScore.score;
+      currentPlayer.changeScore(this.scoreBoard!.currentScore.score);
     }
 
     if (this.invertedSkulls) {
@@ -172,13 +172,13 @@ export class Game implements IGame {
         ...this.players.slice(this.currentPlayerIndex + 1),
       ];
 
-      otherPlayers.forEach(
-        (p) => (p.score += this.scoreBoard!.currentScore.score)
+      otherPlayers.forEach((p) =>
+        p.changeScore(this.scoreBoard!.currentScore.score)
       );
     }
 
     if (this.scoreBoard!.currentScore.minSwords < 0) {
-      currentPlayer.score += this.scoreBoard!.currentScore.minSwords;
+      currentPlayer.changeScore(this.scoreBoard!.currentScore.minSwords);
     }
 
     if (currentPlayer.score >= this.scoreBoard!.maxScore) {

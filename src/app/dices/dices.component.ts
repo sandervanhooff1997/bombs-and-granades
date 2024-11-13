@@ -25,17 +25,15 @@ export class DicesComponent {
   }
 
   pickable(d: IDice): boolean {
-    return !d.picked &&
-    d.optionable &&
-    d.side !== DiceSides.Skull
+    return !d.picked && d.optionable && d.side !== DiceSides.Skull;
   }
 
-  regularSkull(d: IDice): boolean {
-    return d.side === DiceSides.Skull && !d.optionable;
+  skull(d: IDice): boolean {
+    return d.side === DiceSides.Skull;
   }
 
   deductedSkull(d: IDice): boolean {
-    return d.side === DiceSides.Skull && d.optionable
+    return d.side === DiceSides.Skull && d.optionable;
   }
 
   releaseable(d: IDice): boolean {

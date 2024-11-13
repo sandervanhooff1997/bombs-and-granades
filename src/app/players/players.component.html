@@ -1,10 +1,12 @@
-<ng-container>
-  <div class="player spawn-bounce-animate" [ngClass]="{
+<div class="player spawn-bounce-animate" [ngClass]="{
     'player-playing': !game.currentPlayerDeath && game.currentPlayerIndex == i,
     'player-death': game.currentPlayerDeath && game.currentPlayerIndex == i
   }" *ngFor="let p of game.players; let i = index">
-    <p>Player {{ i + 1 }}</p>
-    <p>Score: {{ p.score }}</p>
-    <app-score-board *ngIf="game.currentPlayerIndex === i" [game]="game"></app-score-board>
+  <p>Player {{ i + 1 }}</p>
+  <div class="score">
+    Score: {{ p.score }}
+    <ol class="hover-info" *ngIf="p.scoreHistory?.length">
+      <li *ngFor="let score of p.scoreHistory">{{ score }}</li>
+    </ol>
   </div>
-</ng-container>
+</div>

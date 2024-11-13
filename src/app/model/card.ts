@@ -69,12 +69,12 @@ export class CardDeck implements ICardDeck {
   }
 
   pickCurrentCard() {
-    // this.currentCard =
-    //   this.cardsAvailable.find((c) => c.type == CardType.OneSkullDeducted) ??
-    //   this.cardsAvailable[0];
-    const lastCardIndex = this.cardsAvailable.length - 1;
-    this.currentCard = this.cardsAvailable[lastCardIndex];
-    this.cardsAvailable.splice(lastCardIndex, 1);
+    this.currentCard =
+      this.cardsAvailable.find((c) => c.type == CardType.OneSkullDeducted) ??
+      this.cardsAvailable[0];
+    // const lastCardIndex = this.cardsAvailable.length - 1;
+    // this.currentCard = this.cardsAvailable[lastCardIndex];
+    // this.cardsAvailable.splice(lastCardIndex, 1);
 
     if (!this.cardsAvailable.length) {
       this.init();

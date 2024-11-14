@@ -11,6 +11,7 @@ import { PlayersComponent } from './players/players.component';
 import { ScoreBoardComponent } from './score-board/score-board.component';
 import { StartFormComponent } from './start-form/start-form.component';
 import { StorageService } from './storage.service';
+import { ToastComponent } from './toast/toast.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { StorageService } from './storage.service';
     StartFormComponent,
     ConfirmAlertComponent,
     CurrentGameStatsComponent,
+    ToastComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',

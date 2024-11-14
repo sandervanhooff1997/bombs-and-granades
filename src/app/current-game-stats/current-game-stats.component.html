@@ -5,11 +5,10 @@
   <p>Max score: {{game.scoreBoard!.maxScore}}</p>
   <span><i class="fa-solid fa-info"></i>info</span>
   <span (click)="onSaveGame()"><i class="fa-solid fa-floppy-disk"></i>save</span>
-  <span (click)="requestRestart = true"><i class="fa-solid fa-rotate"></i>restart</span>
   <span (click)="requestStop = true"><i class="fa-solid fa-stop"></i>stop</span>
 </div>
 
-<app-confirm-alert *ngIf="requestRestart" message="Restart Game?" [isAlert]="false"
-  (confirm)="onRestartGame($event)"></app-confirm-alert>
 <app-confirm-alert *ngIf="requestStop" message="Stop Game?" [isAlert]="false"
   (confirm)="onStopGame($event)"></app-confirm-alert>
+
+<app-toast message="Game Saved" *ngIf="requestSave" (hidden)="requestSave = false"></app-toast>

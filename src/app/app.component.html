@@ -12,7 +12,7 @@
       </div>
 
       <div class="right-column">
-        <app-current-game-stats [game]="game"></app-current-game-stats>
+        <app-current-game-stats [game]="game" (stopGame)="reset()"></app-current-game-stats>
         <app-score-board [game]="game"></app-score-board>
       </div>
     </div>

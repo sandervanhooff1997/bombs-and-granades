@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
 import { CardsComponent } from './cards/cards.component';
 import { ConfirmAlertComponent } from './confirm-alert/confirm-alert.component';
+import { CurrentGameStatsComponent } from './current-game-stats/current-game-stats.component';
 import { DicesComponent } from './dices/dices.component';
 import { Game, IGame } from './model/game';
 import { PlayersComponent } from './players/players.component';
 import { ScoreBoardComponent } from './score-board/score-board.component';
 import { StartFormComponent } from './start-form/start-form.component';
-import { CurrentGameStatsComponent } from './current-game-stats/current-game-stats.component';
+import { StorageService } from './storage.service';
 
 @Component({
   selector: 'app-root',
@@ -29,19 +30,13 @@ import { CurrentGameStatsComponent } from './current-game-stats/current-game-sta
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
 })
-export class AppComponent implements OnChanges {
+export class AppComponent {
   game: IGame | null = null;
   gameData = '';
 
-  constructor() {
-    this.startGame({
-      numPlayers: 3,
-      maxScore: 5000,
-    });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+  constructor(private readonly storageService: StorageService) {
+    this.game = storageService.loadGame();
+    console.log(this.game);
   }
 
   startGame(data: { numPlayers: number; maxScore: number }) {
@@ -50,6 +45,7 @@ export class AppComponent implements OnChanges {
   }
 
   reset() {
+    this.storageService.clearGame();
     this.game = null;
   }
 }

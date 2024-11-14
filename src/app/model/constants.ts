@@ -1,3 +1,5 @@
+export const STORAGE_KEY = 'bombs-and-granades-data';
+
 export const MIN_PLAYERS = 2;
 export const MAX_PLAYERS = 5;
 

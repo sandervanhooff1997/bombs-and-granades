@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { ConfirmAlertComponent } from '../confirm-alert/confirm-alert.component';
 import { IGame } from '../model/game';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-current-game-stats',
@@ -12,9 +13,17 @@ import { IGame } from '../model/game';
 })
 export class CurrentGameStatsComponent {
   @Input() game!: IGame;
+  @Output() stopGame = new EventEmitter<void>();
 
+  requestSave = false;
   requestRestart = false;
   requestStop = false;
+
+  constructor(private readonly storageService: StorageService) {}
+
+  onSaveGame(): void {
+    this.storageService.saveGame(this.game);
+  }
 
   onRestartGame(confirmed: boolean): void {
     if (!confirmed) {
@@ -30,6 +39,6 @@ export class CurrentGameStatsComponent {
       return;
     }
 
-    // todo : stop game
+    this.stopGame.emit();
   }
 }

@@ -3,50 +3,25 @@
 </div>
 
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <label [for]="numPlayersInput"
-    >Enter a number of players<br />(between {{ minPlayers }} and
-    {{ maxPlayers }})</label
-  >
-  <input
-    [id]="numPlayersInput"
-    type="number"
-    placeholder="Number of players"
-    [formControlName]="numPlayersInput"
-  />
-
-  <div
-    *ngIf="
-      myForm.get(numPlayersInput)?.invalid &&
-      myForm.get(numPlayersInput)?.touched
-    "
-  >
-    <div *ngIf="myForm.get(numPlayersInput)?.errors?.['required']">
-      This field is required.
+  <div formArrayName="players">
+    <label for="players">Players</label>
+    <div id="players" *ngFor="let player of players.controls; let i = index">
+      <input class="player-name-input" type="text" placeholder="Player Name" [formControlName]="i" />
+      <button class="btn-remove-player" *ngIf="players.length > minPlayers" (click)="removePlayer(i)">Remove</button>
+      <div *ngIf="player.errors?.['maxlength']">
+        Max 15 characters
+      </div>
     </div>
-    <div *ngIf="myForm.get(numPlayersInput)?.errors?.['min']">
-      The number must be greater than {{ minPlayers }}.
-    </div>
-    <div *ngIf="myForm.get(numPlayersInput)?.errors?.['max']">
-      The number must be less than {{ maxPlayers }}.
-    </div>
+    <button *ngIf="players.length < maxPlayers" (click)="addPlayer()"><span>Add Player</span></button>
   </div>
 
-  <label [for]="maxScoreInput"
-    >Enter a max score<br />(between {{ minScore }} and {{ maxScore }})</label
-  >
-  <input
-    [id]="maxScoreInput"
-    type="number"
-    placeholder="Max Score"
-    step="1000"
-    [formControlName]="maxScoreInput"
-  />
+  <br>
+  <label [for]="maxScoreInput">Max score</label>
+  <input [id]="maxScoreInput" type="number" placeholder="Max Score" step="1000" [formControlName]="maxScoreInput" />
 
-  <div
-    *ngIf="
+  <div style="margin-bottom: 20px;" *ngIf="
       myForm.get(maxScoreInput)?.invalid && myForm.get(maxScoreInput)?.touched
-    "
-  >
+    ">
     <div *ngIf="myForm.get(maxScoreInput)?.errors?.['required']">
       This field is required.
     </div>

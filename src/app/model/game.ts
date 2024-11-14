@@ -24,7 +24,7 @@ export interface IGame {
   currentPlayerDeath: boolean;
   invertedSkulls: boolean;
 
-  start(numPlayers: number, maxScore: number): void;
+  start(playerNames: string[], maxScore: number): void;
 
   rollDice(): void;
   pickDice(dice: IDice): void;
@@ -52,8 +52,8 @@ export class Game implements IGame {
   currentPlayerDeath = false;
   invertedSkulls = false;
 
-  start(numPlayers: number, maxScore = 5000): void {
-    if (!this.validateAndCreatePlayers(numPlayers)) {
+  start(playerNames: string[], maxScore = 5000): void {
+    if (!this.validateAndCreatePlayers(playerNames)) {
       return;
     }
 
@@ -198,9 +198,9 @@ export class Game implements IGame {
     this.determineDiceRollable();
   }
 
-  private validateAndCreatePlayers(numPlayers: number): boolean {
+  private validateAndCreatePlayers(playerNames: string[]): boolean {
     const minMaxPlayersExceeded =
-      numPlayers < MIN_PLAYERS || numPlayers > MAX_PLAYERS;
+      playerNames.length < MIN_PLAYERS || playerNames.length > MAX_PLAYERS;
 
     if (minMaxPlayersExceeded) {
       alert(`Min ${MIN_PLAYERS} players, max ${MAX_PLAYERS} players`);
@@ -208,8 +208,8 @@ export class Game implements IGame {
     }
 
     const players: IPlayer[] = [];
-    for (let index = 0; index < numPlayers; index++) {
-      players.push(new Player());
+    for (let index = 0; index < playerNames.length; index++) {
+      players.push(new Player(playerNames[index]));
     }
 
     this.players = players;

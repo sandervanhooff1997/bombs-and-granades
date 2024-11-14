@@ -2,7 +2,7 @@
     'player-playing': !game.currentPlayerDeath && game.currentPlayerIndex == i,
     'player-death': game.currentPlayerDeath && game.currentPlayerIndex == i
   }" *ngFor="let p of game.players; let i = index">
-  <p>Player {{ i + 1 }}</p>
+  <p>{{p.name}}</p>
   <div class="score">
     Score: {{ p.score }}
     <ol class="hover-info" *ngIf="p.scoreHistory?.length">

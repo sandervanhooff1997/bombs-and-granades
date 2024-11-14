@@ -41,9 +41,9 @@ export class AppComponent {
     console.log(this.game);
   }
 
-  startGame(data: { numPlayers: number; maxScore: number }) {
+  startGame(data: { playerNames: string[]; maxScore: number }) {
     this.game = new Game();
-    this.game.start(data.numPlayers, data.maxScore);
+    this.game.start(data.playerNames, data.maxScore);
   }
 
   reset() {

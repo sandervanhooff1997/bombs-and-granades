@@ -1,4 +1,4 @@
-@import '../_variables'
+@import '../../_variables'
 
 .game-title
   font-size: 4rem
@@ -18,14 +18,27 @@ form
   background-color: $color-light-gray
   font-size: 1.5rem
 
-label
-  margin-bottom: 8px
+  label
+    margin-bottom: 8px
+    display: block
 
-input[type="number"]
+input
   padding: 10px
-  margin-bottom: 30px
+  margin-bottom: 20px
   border: 1px solid #ccc
   border-radius: 4px
   width: 100%
   box-sizing: border-box
   font-size: 1.5rem
+
+.btn-remove-player
+  padding: 5px
+  margin-bottom: 2px
+
+.player-name-input
+  display: inline-block
+  width: 80%
+  margin-right: 10px
+
+  button
+    display: inline-block

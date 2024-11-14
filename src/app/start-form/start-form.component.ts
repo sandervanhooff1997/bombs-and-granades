@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -22,12 +23,11 @@ import {
 })
 export class StartFormComponent {
   @Output() onGameStart = new EventEmitter<{
-    numPlayers: number;
+    playerNames: string[];
     maxScore: number;
   }>();
   gameTitle = 'Bombs & Granades';
   myForm!: FormGroup;
-  numPlayersInput = 'numPlayers';
   maxScoreInput = 'maxScore';
   minPlayers = MIN_PLAYERS;
   maxPlayers = MAX_PLAYERS;
@@ -39,14 +39,13 @@ export class StartFormComponent {
   ngOnInit(): void {
     // Initialize the form with validation
     this.myForm = this.fb.group({
-      numPlayers: [
-        2,
-        [
-          Validators.required,
-          Validators.min(this.minPlayers),
-          Validators.max(this.maxPlayers),
-        ],
-      ],
+      players: this.fb.array(
+        Array(this.minPlayers)
+          .fill('')
+          .map(() =>
+            this.fb.control('', [Validators.required, Validators.maxLength(15)])
+          )
+      ),
       maxScore: [
         5000,
         [
@@ -58,11 +57,27 @@ export class StartFormComponent {
     });
   }
 
+  get players(): FormArray {
+    return this.myForm.get('players') as FormArray;
+  }
+
+  addPlayer(): void {
+    if (this.players.length < this.maxPlayers) {
+      this.players.push(this.fb.control('', Validators.required));
+    }
+  }
+
+  removePlayer(index: number): void {
+    if (this.players.length > this.minPlayers) {
+      this.players.removeAt(index);
+    }
+  }
+
   // Method to handle form submission
   onSubmit(): void {
     if (this.myForm.valid) {
       this.onGameStart.emit({
-        numPlayers: this.myForm.get(this.numPlayersInput)?.value ?? 0,
+        playerNames: this.players.value,
         maxScore: this.myForm.get(this.maxScoreInput)?.value ?? 0,
       });
     }

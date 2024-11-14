@@ -34,7 +34,7 @@ export class StorageService {
         Object.assign(new Dice(), dice)
       );
       game.players = parsedData.players.map((player) =>
-        Object.assign(new Player(), player)
+        Object.assign(new Player(player.name), player)
       );
 
       game.scoreBoard = Object.assign(

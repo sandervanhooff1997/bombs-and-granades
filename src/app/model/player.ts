@@ -1,4 +1,5 @@
 export interface IPlayer {
+  name: string;
   score: number;
   scoreHistory: number[];
 
@@ -6,8 +7,13 @@ export interface IPlayer {
 }
 
 export class Player implements IPlayer {
+  name: string;
   score: number = 0;
   scoreHistory: number[] = [];
+
+  constructor(name: string) {
+    this.name = name;
+  }
 
   changeScore(change: number): void {
     this.score += change;
